@@ -7,8 +7,9 @@ import org.junit.Test;
 public class TestAmount {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void addmoney() {
+		Amount am = new Amount();
+
 	}
 
 }
