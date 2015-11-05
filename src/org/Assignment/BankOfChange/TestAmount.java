@@ -7,8 +7,10 @@ import org.junit.Test;
 public class TestAmount {
 
 	@Test
-	public void addmoney() {
+	public void Testaddmoney() {
 		Amount am = new Amount();
+		am.addMoney();
+		assertEquals()
 
 	}
 
