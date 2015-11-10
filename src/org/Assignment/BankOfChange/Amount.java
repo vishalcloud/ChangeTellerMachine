@@ -3,20 +3,22 @@ package org.Assignment.BankOfChange;
 import java.util.HashMap;
 import java.util.Map;
 
+import junit.framework.Assert;
+
 public class Amount {
 	HashMap<Integer, Integer> notes = new HashMap<Integer, Integer>();
-	public void BankerAddsMoneyToMachine() {
+	public void bankerAddsMoneyToMachine() {
 		Amount am = new Amount();
-		am.addMoney();
+		am.addMoney(0, 0);
 	}
-	public void addMoney() {
-		notes.put(10, 100);
+	public void addMoney(int x,int y) {
+	/*	notes.put(10, 100);
 		notes.put(50, 50);
 		notes.put(100, 25);
 		notes.put(500, 20);
-		notes.put(1000, 10);
+		notes.put(1000, 10);*/
 	}
-	public boolean AcceptNoteFromCustomer(int note) throws Exception {
+	public boolean acceptNoteFromCustomer(int note) throws Exception {
 		if (note <= 10) {
 			showError("Not available for suchh Low Value");
 			return true;
@@ -34,7 +36,7 @@ public class Amount {
 	private void dispatch(int note) throws Exception {
 		int n = note;
 		if (notes.containsKey(n)) {
-			noteCalculator(n);
+	//		noteCalculator(n);
 			int newcount = (notes.get(n) + 1);
 			notes.replace(n, newcount);
 		}

@@ -27,14 +27,16 @@ public class TestAmount {
 		Map<Integer, Integer> dispatchedNotes = new HashMap<Integer, Integer>();
 
 	
-		Assert.assertEquals ("{10,10}" , am.noteCalculator(100));
+		Assert.assertEquals ("String Test" ,10, am.noteCalculator(100));
 	}
 	
 	@Test
 	public void testAcceptNoteFromCustomer() throws Exception
 	{
 		Amount am = new Amount();
-		Assert.assertEquals("Not available for suchh Low Value",am.AcceptNoteFromCustomer(10));
+		boolean x =am.acceptNoteFromCustomer(20);
+		Assert.assertFalse(x);
+		
 	}
 	
 }
