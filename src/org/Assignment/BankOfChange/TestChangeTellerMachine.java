@@ -6,8 +6,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestAmount {
-	Amount am = new Amount();
+public class TestChangeTellerMachine {
+	ChangeTellerMachine am = new ChangeTellerMachine();
 
 	
 	@Test
@@ -39,7 +39,7 @@ public class TestAmount {
 		}
 		@Test
 		public void testcheckValidNoteFromCustomer() throws Exception{
-			Amount am = new Amount();
+			ChangeTellerMachine am = new ChangeTellerMachine();
 			Assert.assertTrue(am.checkValidNoteFromCustomer(50));
 			Assert.assertTrue(am.checkValidNoteFromCustomer(100));
 			Assert.assertTrue(am.checkValidNoteFromCustomer(500));
