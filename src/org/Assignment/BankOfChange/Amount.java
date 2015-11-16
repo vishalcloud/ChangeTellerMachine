@@ -2,91 +2,87 @@ package org.Assignment.BankOfChange;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import junit.framework.Assert;
-
 public class Amount {
-	HashMap<Integer, Integer> notes = new HashMap<Integer, Integer>();
-	public void bankerAddsMoneyToMachine() {
-		Amount am = new Amount();
-		am.addMoney(0, 0);
+	Map<Integer, Integer> notes = new HashMap<Integer, Integer>();
+	Map<Integer, Integer> dispatchedNotes = new HashMap<Integer, Integer>();
+
+	public void bankerAddsMoneyToMachine(int x, int y) {
+		notes.put(x, y);
 	}
-	public void addMoney(int x,int y) {
-	/*	notes.put(10, 100);
-		notes.put(50, 50);
-		notes.put(100, 25);
-		notes.put(500, 20);
-		notes.put(1000, 10);*/
-	}
-	public boolean acceptNoteFromCustomer(int note) throws Exception {
+
+	public boolean checkInvalidNoteFromCustomer(int note) throws Exception {
 		if (note <= 10) {
-			showError("Not available for suchh Low Value");
-			return true;
-			// System.out.println("We do not have Change available for this
-			// currency note");
-		} else {
-			dispatch(note);
-			return false;
+			// showError("Not available for such Low Value");
 		}
-		
+		return false;
 	}
+
+	public boolean checkValidNoteFromCustomer(int note) throws Exception {
+		return (note > 10);
+	}
+
 	private void showError(String string) throws Exception {
 		throw new Exception(string);
 	}
-	private void dispatch(int note) throws Exception {
+
+	public Map<Integer, Integer> dispatch(int note) throws Exception {
 		int n = note;
+		dispatchedNotes = (Map<Integer, Integer>) noteCalculator(n);
 		if (notes.containsKey(n)) {
-	//		noteCalculator(n);
 			int newcount = (notes.get(n) + 1);
 			notes.replace(n, newcount);
 		}
+		return dispatchedNotes;
 	}
-	public Map<Integer, Integer> noteCalculator(int n) throws Exception {
-		Map<Integer, Integer> dispatchedNotes = new HashMap<Integer, Integer>();
-
+	private Map<Integer, Integer> noteCalculator(int n) throws Exception {
 		if (n == 1000 && checkifNotesAvailable()) {
-			notes.replace(500, notes.get(500) - 1);
-			notes.replace(100, notes.get(100) - 4);
-			notes.replace(50, notes.get(50) - 1);
-			notes.replace(10, notes.get(10) - 5);
+			if (notes.containsKey(n)) {
+				notes.replace(500, notes.get(500) - 1);
+				notes.replace(100, notes.get(100) - 4);
+				notes.replace(50, notes.get(50) - 1);
+				notes.replace(10, notes.get(10) - 5);
+			}
 			dispatchedNotes.put(500, 1);
 			dispatchedNotes.put(100, 4);
 			dispatchedNotes.put(50, 1);
 			dispatchedNotes.put(10, 5);
+			return dispatchedNotes;
 		}
 		if (n == 500 && checkifNotesAvailable()) {
-			notes.replace(100, notes.get(100) - 4);
-			notes.replace(50, notes.get(50) - 1);
-			notes.replace(10, notes.get(10) - 5);
-			dispatchedNotes.put(500, 1);
+			if (notes.containsKey(n)) {
+				notes.replace(100, notes.get(100) - 4);
+				notes.replace(50, notes.get(50) - 1);
+				notes.replace(10, notes.get(10) - 5);
+			}
 			dispatchedNotes.put(100, 4);
 			dispatchedNotes.put(50, 1);
 			dispatchedNotes.put(10, 5);
 		}
 		if (n == 100 && checkifNotesAvailable()) {
-			notes.replace(50, notes.get(50) - 1);
-			notes.replace(10, notes.get(10) - 5);
-			dispatchedNotes.put(500, 1);
-			dispatchedNotes.put(100, 4);
+			if (notes.containsKey(n)) {
+				notes.replace(50, notes.get(50) - 1);
+				notes.replace(10, notes.get(10) - 5);
+			}
 			dispatchedNotes.put(50, 1);
 			dispatchedNotes.put(10, 5);
 		}
 		if (n == 50 && checkifNotesAvailable()) {
-
-			notes.replace(10, notes.get(10) - 5);
-			dispatchedNotes.put(500, 1);
-			dispatchedNotes.put(100, 4);
-			dispatchedNotes.put(50, 1);
+			if (notes.containsKey(n)) {
+				notes.replace(10, (notes.get(10) - 5));
+			}
 			dispatchedNotes.put(10, 5);
 		}
-		System.out.println(dispatchedNotes);
+		// System.out.println(dispatchedNotes);
 		return dispatchedNotes;
 	}
 	public boolean checkifNotesAvailable() throws Exception {
-		if (!notes.containsValue(0)) {
-			return true;
-		} else
+		if (notes.containsValue(0)) {
+			showError("Sufficient Notes not available for this transactions.");
 			return false;
+		} else
+			return true;
+	}
+	public int getNotesCount(int n) {
+		return (notes.get(n));
 	}
 }
-

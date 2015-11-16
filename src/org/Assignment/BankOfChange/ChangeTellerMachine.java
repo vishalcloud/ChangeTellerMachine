@@ -1,13 +1,10 @@
 package org.Assignment.BankOfChange;
 
-public abstract class ChangeTellerMachine {
+import java.util.HashMap;
+import java.util.Map;
 
-	private map<>
+public  class ChangeTellerMachine {
+
 	
-	
-	public void bankerAddsMoney()
-	{
-		
 	}
-}
 

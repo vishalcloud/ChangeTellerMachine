@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import junit.framework.Assert;
+
 public class ChangeTellerMachineTest {
 
 	@Test
-	public void testBankerAddsMoneyToMachine() {
-	ChangeTellerMachine ctm1 = new ChangeTellerMachine();
 	
 	}
 
